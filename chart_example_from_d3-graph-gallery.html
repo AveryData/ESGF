@@ -26,7 +26,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // get the data
-d3.csv("density_demo.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/AveryData/ESGF/master/trial_d3_melted.csv", function(data) {
 
   // add the x Axis
   var x = d3.scaleLinear()
@@ -46,10 +46,10 @@ d3.csv("density_demo.csv", function(data) {
   // Compute kernel density estimation
   var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(60))
   var density1 =  kde( data
-      .filter( function(d){return d.type === "variable 1"} )
+      .filter( function(d){return d.type === "Social"} )
       .map(function(d){  return d.value; }) )
   var density2 =  kde( data
-      .filter( function(d){return d.type === "variable 2"} )
+      .filter( function(d){return d.type === "Government"} )
       .map(function(d){  return d.value; }) )
 
   // Plot the area
